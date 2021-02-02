@@ -7,13 +7,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
+
   <ion-button expand="block" (click)="getData()">GET DATA</ion-button>
   <ion-button expand="block" color="danger" (click)="clearCache()">CLEAR CACHE</ion-button>
   <ion-list>
     <ion-item *ngFor="let pic of apiData">
       <ion-thumbnail slot="start">
-        <ion-img [src]=" 'https://picsum.photos/id/' + pic.id + '/100/100' "></ion-img>
+        <img-loader [src]=" 'https://picsum.photos/id/' + pic.id + '/100/100' " (load)="onImageLoad($event)" useImg>
+        </img-loader>
       </ion-thumbnail>
       <ion-label>
         <h2>Author: {{pic.author}}</h2>
