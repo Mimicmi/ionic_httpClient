@@ -14,19 +14,24 @@ export class HomePage {
     private cache: CacheService) { }
 
   apiData: any;
+  searchText: string;
+
 
   clearCache() {
     this.cache.clearAll();
   }
 
+  filterData() {
+    console.log('searchText', this.searchText);
+    const result = this.apiData.filter((item) => {
+      return (item.author.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1);
+    });
+    console.log('Resultat', result);
+    this.apiData = result;
+  }
+
   getData() {
     const URL = "https://picsum.photos/v2/list?limit=10";
-
-    /* this.http.get( URL ).subscribe( (data) => {
-      console.log(data);
-    }); */
-    // on remplace le http.get() par un appel du cache
-
     const request = this.http.get(URL);
     this.cache.loadFromObservable('myCache', request).subscribe((data) => {
       this.apiData = data;

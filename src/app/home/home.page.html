@@ -1,12 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Api / Cache
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <ion-searchbar (ionChange)="filterData($event)" animated="true" (ionCancel)="getData()" (ionClear)="getData()"
+    (ionInput)="getData()" [(ngModel)]="searchText" showCancelButton="focus">
+  </ion-searchbar>
+
 
   <ion-button expand="block" (click)="getData()">GET DATA</ion-button>
   <ion-button expand="block" color="danger" (click)="clearCache()">CLEAR CACHE</ion-button>
